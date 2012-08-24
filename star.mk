@@ -80,6 +80,7 @@ PRODUCT_PACKAGES += \
     libbridge \
     libbridge_jni \
     screencap \
+    HwaSettings \
     audio.a2dp.default \
     hwcomposer.default \
     com.android.future.usb.accessory
