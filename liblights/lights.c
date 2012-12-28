@@ -157,7 +157,7 @@ set_light_backlight(struct light_device_t* dev,
     return err;
 }
 
-/* Disable until pulse is reintroduced
+
 static int
 set_light_notifications(struct light_device_t* dev,
         struct light_state_t const* state)
@@ -189,7 +189,7 @@ set_light_notifications(struct light_device_t* dev,
     }
     pthread_mutex_unlock(&g_lock);
     return err;
-}*/
+}
 
 /** Close the lights device */
 static int
