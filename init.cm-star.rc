@@ -144,6 +144,8 @@ on post-fs-data
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
     mkdir /data/misc/dhcp 0770 dhcp dhcp
     chown dhcp dhcp /data/misc/dhcp
+    #hwui blacklist folder:
+    mkdir /data/local/hwui.deny 0775 system system
     setprop vold.post_fs_data_done 1
 
 service lgdrm /system/bin/lgdrmserver
