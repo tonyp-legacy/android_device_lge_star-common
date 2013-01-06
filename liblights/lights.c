@@ -131,10 +131,11 @@ set_light_buttons(struct light_device_t* dev,
 
     pthread_mutex_lock(&g_lock);
     /* Change the scale to 0-32 */
-    err = write_int(BUTTON_BRIGHTNESS, (int)(value/8));
-    /*if (!err) {
-        err = write_int(BUTTON_STATE, value ? 1 : 0);
-    }*/
+    if (value > 0) {
+		err = write_int(BUTTON_BRIGHTNESS, (int)(value/8));
+    } else {
+    	err = write_int(BUTTON_BRIGHTNESS, 0);
+    }
     pthread_mutex_unlock(&g_lock);
     return err;
 }
@@ -157,35 +158,22 @@ set_light_backlight(struct light_device_t* dev,
     return err;
 }
 
-
 static int
 set_light_notifications(struct light_device_t* dev,
         struct light_state_t const* state)
 {
     int err = 0;
     int on = is_lit(state);
-    int red, green, blue = 0;
-
-    red = (state->color >> 16) & 0xff;
-    green = (state->color >> 8) & 0xff;
-    blue = (state->color) & 0xff;
 
     ALOGV("Calling notification light with state %d",on);
     pthread_mutex_lock(&g_lock);
     if (!on) {
-        err = write_int(BUTTON_PULSE, 0);
         err = write_int(BUTTON_STATE, 0);
     } else {
-        if (green) {
-            err = write_int(BUTTON_BRIGHTNESS, 16);
-            if (!err) err = write_int(BUTTON_STATE, 1);
-        } else if (red) {
-            err = write_int(BUTTON_PULSE, 2000);
-            if (!err) err = write_int(BUTTON_PULSE_INTERVAL, 20000);
-        } else if (blue) {
-            err = write_int(BUTTON_PULSE, 1000);
-            if (!err) err = write_int(BUTTON_PULSE_INTERVAL, 3000);
-        }
+		err = write_int(BUTTON_PULSE_INTERVAL, 5000);
+    	if (!err) err = write_int(BUTTON_PULSE, 2000);
+        if (!err) err = write_int(BUTTON_BRIGHTNESS, 10);
+        if (!err) err = write_int(BUTTON_STATE, 1);
     }
     pthread_mutex_unlock(&g_lock);
     return err;
