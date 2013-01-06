@@ -169,7 +169,7 @@ set_light_notifications(struct light_device_t* dev,
 	int flashOnMS = state->flashOnMS;
 	int flashOffMS = state->flashOffMS;
 
-    ALOGI("Calling notification light with flashMode '%d', fon '%d', foff '%d', bri '%d'\n", flashMode, flashOnMS, flashOffMS, bri);
+    ALOGV("Calling notification light with flashMode '%d', fon '%d', foff '%d', bri '%d'\n", flashMode, flashOnMS, flashOffMS, bri);
     pthread_mutex_lock(&g_lock);
     if (! bri) {
         err = write_int(BUTTON_STATE, 0);
@@ -183,7 +183,7 @@ set_light_notifications(struct light_device_t* dev,
 			}
     	}
 
-		err = write_int(BUTTON_BRIGHTNESS, bri);
+		if (!err) err = write_int(BUTTON_BRIGHTNESS, bri);
         if (!err) err = write_int(BUTTON_STATE, 1);
     }
     pthread_mutex_unlock(&g_lock);
