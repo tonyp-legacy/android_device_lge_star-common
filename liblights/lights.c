@@ -108,13 +108,13 @@ read_int(char const* path)
 static int
 is_lit(struct light_state_t const* state)
 {
-    return state->color & 0x00ffffff;
+    return (read_int(BUTTON_BRIGHTNESS) > 0) ? 1 : 0;
 }
 
 static int
 rgb_to_brightness(struct light_state_t const* state)
 {
-    int color = state->color & 0x00ffffff;
+    int color = state->color; // & 0x00ffffff;
     return ((77*((color>>16)&0x00ff))
             + (150*((color>>8)&0x00ff)) + (29*(color&0x00ff))) >> 8;
 }
@@ -127,7 +127,7 @@ set_light_buttons(struct light_device_t* dev,
     int on = is_lit(state);
     long value = rgb_to_brightness(state);
 
-    ALOGV("Setting button brightness to %ld",value);
+    ALOGV("Setting button brightness to %ld", value);
 
     pthread_mutex_lock(&g_lock);
     /* Change the scale to 0-32 */
@@ -163,16 +163,27 @@ set_light_notifications(struct light_device_t* dev,
         struct light_state_t const* state)
 {
     int err = 0;
-    int on = is_lit(state);
+	int bri = rgb_to_brightness(state);
 
-    ALOGV("Calling notification light with state %d",on);
+	int flashMode = state->flashMode;
+	int flashOnMS = state->flashOnMS;
+	int flashOffMS = state->flashOffMS;
+
+    ALOGI("Calling notification light with flashMode '%d', fon '%d', foff '%d', bri '%d'\n", flashMode, flashOnMS, flashOffMS, bri);
     pthread_mutex_lock(&g_lock);
-    if (!on) {
+    if (! bri) {
         err = write_int(BUTTON_STATE, 0);
     } else {
-		err = write_int(BUTTON_PULSE_INTERVAL, 5000);
-    	if (!err) err = write_int(BUTTON_PULSE, 2000);
-        if (!err) err = write_int(BUTTON_BRIGHTNESS, 10);
+    	if (flashMode == LIGHT_FLASH_TIMED || flashMode == LIGHT_FLASH_HARDWARE)
+    	{
+			if (flashOnMS && flashOffMS)
+			{
+				err = write_int(BUTTON_PULSE, flashOnMS);
+				if (!err) err = write_int(BUTTON_PULSE_INTERVAL, flashOffMS);
+			}
+    	}
+
+		err = write_int(BUTTON_BRIGHTNESS, bri);
         if (!err) err = write_int(BUTTON_STATE, 1);
     }
     pthread_mutex_unlock(&g_lock);
