@@ -32,7 +32,7 @@
     <!-- Package name providing geocoder API support. -->
     <string name="config_geocodeProviderPackageName" translatable="false">com.google.android.location</string>
 
-    <bool name="config_automatic_brightness_available">false</bool>
+    <bool name="config_automatic_brightness_available">true</bool>
 
     <!-- These are all dummies, but need to be present to enable UI control of auto-brightness
                   The actual control and values are all in-kernel -->
