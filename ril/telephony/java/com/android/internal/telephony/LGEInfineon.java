@@ -191,7 +191,7 @@ public class LGEInfineon extends RIL implements CommandsInterface {
                             // Detect V28e or newer BBs like
                             // LGP990AT-00-V30a-EUR-XXX-NOV-30-2012+0
                             if ("LGP990AT".equalsIgnoreCase(basebandSplit[0])
-                                    && (basebandSplit.length >= 2)
+                                    && (basebandSplit.length > 2)
                                     && (basebandSplit[2].length() == 4)
                                     && (basebandSplit[2].toLowerCase().startsWith("v"))
                                     && (basebandSplit[2].compareToIgnoreCase("V28e") >= 0)) {
