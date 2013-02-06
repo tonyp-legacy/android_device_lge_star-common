@@ -19,8 +19,12 @@ TARGET_thumb_CFLAGS := -mthumb \
 	-fomit-frame-pointer \
 	-fstrict-aliasing
 
-TARGET_arm_CFLAGS := -O3 -fomit-frame-pointer -fstrict-aliasing -funswitch-loops \ 
-	-fmodulo-sched -fmodulo-sched-allow-regmoves
+TARGET_arm_CFLAGS := -O3 \
+	-fomit-frame-pointer \
+	-fstrict-aliasing \
+	-funswitch-loops \
+	-fmodulo-sched \
+	-fmodulo-sched-allow-regmoves
 
 KOWALSKI_COMMON_CFLAGS := -mfloat-abi=softfp \
 	-mfpu=vfpv3-d16 \
