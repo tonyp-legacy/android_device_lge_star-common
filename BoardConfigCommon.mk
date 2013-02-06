@@ -15,29 +15,29 @@ ARCH_ARM_HAVE_TLS_REGISTER := true
 ARCH_ARM_USE_NON_NEON_MEMCPY := true
 
 TARGET_thumb_CFLAGS := -mthumb \
-                        -Os \
-                        -fomit-frame-pointer \
-                        -fstrict-aliasing
+-Os \
+-fomit-frame-pointer \
+-fstrict-aliasing
 
 TARGET_arm_CFLAGS := -O3 -fomit-frame-pointer -fstrict-aliasing -funswitch-loops \ 
-                       -fmodulo-sched -fmodulo-sched-allow-regmoves 
+-fmodulo-sched -fmodulo-sched-allow-regmoves 
                       
 KOWALSKI_COMMON_CFLAGS := -mfloat-abi=softfp \
-                        -mfpu=vfpv3-d16 \
-                        -march=armv7-a \
-                        -mcpu=cortex-a9 \
-                        -mtune=cortex-a9 \
-                        -Wno-error=strict-aliasing \
-                        -Wstrict-aliasing=2
+-mfpu=vfpv3-d16 \
+-march=armv7-a \
+-mcpu=cortex-a9 \
+-mtune=cortex-a9 \
+-Wno-error=strict-aliasing \
+-Wstrict-aliasing=2
 
 TARGET_GLOBAL_CFLAGS += $(COMMON_GLOBAL_CFLAGS) \
-                        -O3 \
-                        $(KOWALSKI_COMMON_CFLAGS)
+-O3 \
+$(KOWALSKI_COMMON_CFLAGS)
 
 TARGET_GLOBAL_CPPFLAGS += $(COMMON_GLOBAL_CPPFLAGS) \
-                        -Os \
-                        -fvisibility-inlines-hidden \
-                        $(KOWALSKI_COMMON_CFLAGS)
+-Os \
+-fvisibility-inlines-hidden \
+$(KOWALSKI_COMMON_CFLAGS)
                       
 TARGET_SPECIFIC_HEADER_PATH := device/lge/star-common/include
 
