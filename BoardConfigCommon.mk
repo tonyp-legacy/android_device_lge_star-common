@@ -21,7 +21,24 @@ TARGET_thumb_CFLAGS := -mthumb \
 
 TARGET_arm_CFLAGS := -O3 -fomit-frame-pointer -fstrict-aliasing -funswitch-loops \ 
                        -fmodulo-sched -fmodulo-sched-allow-regmoves 
-                        
+                      
+KOWALSKI_COMMON_CFLAGS := -mfloat-abi=softfp \
+                        -mfpu=vfpv3-d16 \
+                        -march=armv7-a \
+                        -mcpu=cortex-a9 \
+                        -mtune=cortex-a9 \
+                        -Wno-error=strict-aliasing \
+                        -Wstrict-aliasing=2
+
+TARGET_GLOBAL_CFLAGS += $(COMMON_GLOBAL_CFLAGS) \
+                        -O3 \
+                        $(KOWALSKI_COMMON_CFLAGS)
+
+TARGET_GLOBAL_CPPFLAGS += $(COMMON_GLOBAL_CPPFLAGS) \
+                        -Os \
+                        -fvisibility-inlines-hidden \
+                        $(KOWALSKI_COMMON_CFLAGS)
+                      
 TARGET_SPECIFIC_HEADER_PATH := device/lge/star-common/include
 
 #TARGET_USERIMAGES_USE_EXT4 := true
