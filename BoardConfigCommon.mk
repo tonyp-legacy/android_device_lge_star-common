@@ -54,23 +54,17 @@ TARGET_arm_CFLAGS := -O3 \
 	-fivopts \
 	-ftree-parallelize-loops=2
 
-KOWALSKI_COMMON_CFLAGS := -mfloat-abi=softfp \
+TARGET_GLOBAL_CPPFLAGS += $(COMMON_GLOBAL_CPPFLAGS) \
+	-Os \
+	-fvisibility=hidden \
+	-fvisibility-inlines-hidden \
+	-mfloat-abi=softfp \
 	-mfpu=vfpv3-d16 \
 	-march=armv7-a \
 	-mcpu=cortex-a9 \
 	-mtune=cortex-a9 \
 	-Wno-error=strict-aliasing \
 	-Wstrict-aliasing=2
-
-TARGET_GLOBAL_CFLAGS += $(COMMON_GLOBAL_CFLAGS) \
-	-O3 \
-	$(KOWALSKI_COMMON_CFLAGS)
-
-TARGET_GLOBAL_CPPFLAGS += $(COMMON_GLOBAL_CPPFLAGS) \
-	-Os \
-	-fvisibility=hidden \
-	-fvisibility-inlines-hidden \
-	$(KOWALSKI_COMMON_CFLAGS)
 
 TARGET_SPECIFIC_HEADER_PATH := device/lge/star-common/include
 
