@@ -56,7 +56,6 @@ TARGET_arm_CFLAGS := -O3 \
 
 TARGET_GLOBAL_CPPFLAGS += $(COMMON_GLOBAL_CPPFLAGS) \
 	-Os \
-	-fvisibility=hidden \
 	-fvisibility-inlines-hidden \
 	-mfloat-abi=softfp \
 	-mfpu=vfpv3-d16 \
