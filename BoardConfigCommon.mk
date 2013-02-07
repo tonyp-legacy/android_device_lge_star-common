@@ -68,6 +68,7 @@ TARGET_GLOBAL_CFLAGS += $(COMMON_GLOBAL_CFLAGS) \
 
 TARGET_GLOBAL_CPPFLAGS += $(COMMON_GLOBAL_CPPFLAGS) \
 	-Os \
+	-fvisibility=hidden \
 	-fvisibility-inlines-hidden \
 	$(KOWALSKI_COMMON_CFLAGS)
 
