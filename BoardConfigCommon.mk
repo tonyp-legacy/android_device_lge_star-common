@@ -17,14 +17,42 @@ ARCH_ARM_USE_NON_NEON_MEMCPY := true
 TARGET_thumb_CFLAGS := -mthumb \
 	-Os \
 	-fomit-frame-pointer \
-	-fstrict-aliasing
+	-fstrict-aliasing \
+	-Werror=strict-aliasing \
+	-finline-limit=64 \
+	-march=armv7-a \
+	-mtune=cortex-a9 \
+	-mcpu=cortex-a9 \
+	-ftree-loop-linear   \
+	-floop-interchange   \
+	-floop-strip-mine    \
+	-floop-block         \
+	-fgraphite-identity  \
+	-floop-parallelize-all \
+	-ftree-loop-distribution \
+	-ftree-loop-distribute-patterns \
+	-fivopts \
+	-ftree-parallelize-loops=2
 
 TARGET_arm_CFLAGS := -O3 \
 	-fomit-frame-pointer \
 	-fstrict-aliasing \
 	-funswitch-loops \
 	-fmodulo-sched \
-	-fmodulo-sched-allow-regmoves
+	-fmodulo-sched-allow-regmoves \
+	-march=armv7-a       \
+	-mtune=cortex-a9     \
+	-mcpu=cortex-a9      \
+	-ftree-loop-linear   \
+	-floop-interchange   \
+	-floop-strip-mine    \
+	-floop-block         \
+	-fgraphite-identity  \
+	-floop-parallelize-all \
+	-ftree-loop-distribution \
+	-ftree-loop-distribute-patterns \
+	-fivopts \
+	-ftree-parallelize-loops=2
 
 KOWALSKI_COMMON_CFLAGS := -mfloat-abi=softfp \
 	-mfpu=vfpv3-d16 \
