@@ -22,7 +22,7 @@ TARGET_thumb_CFLAGS := -mthumb \
 +TARGET_arm_CFLAGS := -O3 \
 	-fomit-frame-pointer \
 	-fstrict-aliasing \
-	-funswitch-loops \ 
+	-funswitch-loops \
 	-fmodulo-sched \
 	-fmodulo-sched-allow-regmoves 
 
