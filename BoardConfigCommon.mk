@@ -19,9 +19,12 @@ TARGET_thumb_CFLAGS := -mthumb \
 	-fomit-frame-pointer \
 	-fstrict-aliasing
 
-+TARGET_arm_CFLAGS := -O3 -fomit-frame-pointer -fstrict-aliasing -funswitch-loops \ 
-	-fmodulo-sched -fmodulo-sched-allow-regmoves 
-
++TARGET_arm_CFLAGS := -O3 \
+	-fomit-frame-pointer \
+	-fstrict-aliasing \
+	-funswitch-loops \ 
+	-fmodulo-sched \
+	-fmodulo-sched-allow-regmoves 
 
 TARGET_GLOBAL_CPPFLAGS += $(COMMON_GLOBAL_CPPFLAGS) \
 	-Os \
