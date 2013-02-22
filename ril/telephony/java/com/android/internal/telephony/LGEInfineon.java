@@ -56,10 +56,6 @@ public class LGEInfineon extends RIL implements CommandsInterface {
     protected int mCallState = TelephonyManager.CALL_STATE_IDLE;
 
     private int RIL_REQUEST_HANG_UP_CALL = 182;
-    
-    private String basebandVersion = SystemProperties.get("gsm.version.baseband");
-    String[] basebandSplit = basebandVersion == null ? new String[1] : basebandVersion.split("-");
-
 
     /* We're not actually changing REQUEST_GET_IMEI, but it's one
        of the first requests made after enabling the radio, and it
@@ -157,9 +153,7 @@ public class LGEInfineon extends RIL implements CommandsInterface {
                 break;
             case 1080: // RIL_UNSOL_LGE_FACTORY_READY (NG)
                 /* Adjust request IDs */
-            	if ("LGSU660AT".equalsIgnoreCase(basebandSplit[0])) {
-            		RIL_REQUEST_HANG_UP_CALL = 206;
-            	}
+                RIL_REQUEST_HANG_UP_CALL = 206;
                 break;
             case RIL_UNSOL_LGE_SIM_STATE_CHANGED:
             case RIL_UNSOL_LGE_SIM_STATE_CHANGED_NEW:
@@ -186,19 +180,22 @@ public class LGEInfineon extends RIL implements CommandsInterface {
                 if (SystemProperties.getBoolean(TelephonyProperties.PROPERTY_IGNORE_NITZ, false)) {
                     ignoreNitz = true;
                 } else {
-                    // Detect SU660 Basebands like
-                    // LGSU660AT-00-V20m-450-05-APR-20-2012+0
-                    if ("LGSU660AT".equalsIgnoreCase(basebandSplit[0])) {
-                        ignoreNitz = true;
-                    } else {
-                        // Detect V28e or newer BBs like
-                        // LGP990AT-00-V30a-EUR-XXX-NOV-30-2012+0
-                        if ("LGP990AT".equalsIgnoreCase(basebandSplit[0])
-                                && (basebandSplit.length > 2)
-                                && (basebandSplit[2].length() == 4)
-                                && (basebandSplit[2].toLowerCase().startsWith("v"))
-                                && (basebandSplit[2].compareToIgnoreCase("V28e") >= 0)) {
+                    String basebandVersion = SystemProperties.get("gsm.version.baseband");
+                    if (basebandVersion != null) {
+                        String[] basebandSplit = basebandVersion.split("-");
+                        // Detect SU660 Basebands like
+                        // LGSU660AT-00-V20m-450-05-APR-20-2012+0
+                        if ("LGSU660AT".equalsIgnoreCase(basebandSplit[0])) {
                             ignoreNitz = true;
+                        } else {
+                            // Detect V28e or newer BBs like
+                            // LGP990AT-00-V30a-EUR-XXX-NOV-30-2012+0
+                            if ("LGP990AT".equalsIgnoreCase(basebandSplit[0])
+                                    && (basebandSplit.length > 2)
+                                    && (basebandSplit[2].length() == 4)
+                                    && (basebandSplit[2].toLowerCase().startsWith("v"))
+                                    && (basebandSplit[2].compareToIgnoreCase("V28e") >= 0)) {
+                                ignoreNitz = true;
                             }
                         }
                     }
