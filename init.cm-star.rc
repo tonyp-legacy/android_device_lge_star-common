@@ -137,15 +137,15 @@ on boot
     chmod 0660 /sys/class/rfkill/rfkill0/type
     chmod 0660 /sys/class/rfkill/rfkill1/state
     chmod 0660 /sys/class/rfkill/rfkill1/type
-    chmod 0660 /proc/bluetooth/sleep/lpm
-    chmod 0660 /proc/bluetooth/sleep/btwrite
+##    chmod 0660 /proc/bluetooth/sleep/lpm
+##    chmod 0660 /proc/bluetooth/sleep/btwrite
 
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill1/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill1/type
-    chown bluetooth bluetooth /proc/bluetooth/sleep/lpm
-    chown bluetooth bluetooth /proc/bluetooth/sleep/btwrite
+##    chown bluetooth bluetooth /proc/bluetooth/sleep/lpm
+##    chown bluetooth bluetooth /proc/bluetooth/sleep/btwrite
     write /sys/class/rfkill/rfkill0/state 0
 ### End of LGE bluetooth
 
@@ -244,3 +244,11 @@ service vsnet2_down /system/bin/init.vsnet-down 2
    group radio cache inet misc
    disabled
    oneshot
+
+service hciattach /system/bin/brcm_patchram_plus --enable_hci \
+     --baudrate 3000000 --patchram /etc/firmware/bcm4329.hcd \
+     /dev/ttyHS2
+    class main
+    user bluetooth
+    group bluetooth net_bt_admin
+    disabled

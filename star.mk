@@ -79,6 +79,16 @@ PRODUCT_PACKAGES += \
     audio.a2dp.default \
     hwcomposer.default \
     com.android.future.usb.accessory
+    
+# bluetooth BlueZ config
+PRODUCT_PACKAGES += \
+    bluetoothd \
+    hciconfig \
+    hcitool \
+    brcm_patchram_plus
+	
+BOARD_BLUETOOTH_DOES_NOT_USE_RFKILL := false
+BOARD_BLUETOOTH_USES_HCIATTACH_PROPERTY := false
 
 # Enable Torch
 PRODUCT_PACKAGES += Torch
