@@ -93,6 +93,13 @@ BOARD_BLUETOOTH_USES_HCIATTACH_PROPERTY := false
 # Enable Torch
 PRODUCT_PACKAGES += Torch
 
+# Enable mini gapps
+MINI_GAPPS := true
+$(call inherit-product, vendor/google/gapps_armv6_tiny.mk)
+
+PRODUCT_PACKAGES += \
+    GooUpdater
+
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	persist.sys.usb.config=mtp,adb
