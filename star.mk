@@ -98,9 +98,6 @@ PRODUCT_PACKAGES += Torch
 MINI_GAPPS := true
 $(call inherit-product, vendor/google/gapps_armv6_tiny.mk)
 
-PRODUCT_PACKAGES += \
-    GooUpdater
-
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	persist.sys.usb.config=mtp,adb
