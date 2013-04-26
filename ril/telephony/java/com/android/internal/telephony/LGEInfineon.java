@@ -112,9 +112,9 @@ public class LGEInfineon extends RIL implements CommandsInterface {
         Object ret;
         int dataPosition = p.dataPosition(); // save off position within the Parcel
         int response = p.readInt();
+        
         String basebandVersion = SystemProperties.get("gsm.version.baseband");
         String[] basebandSplit = basebandVersion == null ? new String[1] : basebandVersion.split("-");
-
 
         switch(response) {
             case RIL_UNSOL_ON_USSD: ret =  responseStrings(p); break;
@@ -156,7 +156,7 @@ public class LGEInfineon extends RIL implements CommandsInterface {
                 break;
             case 1080: // RIL_UNSOL_LGE_FACTORY_READY (NG)
                 /* Adjust request IDs */
-            	if ("LGSU660AT".equalsIgnoreCase(basebandSplit[0])) {
+            	if ("LGP990AT".equalsIgnoreCase(basebandSplit[0])) {
             		RIL_REQUEST_HANG_UP_CALL = 206;
             	}
                 break;
