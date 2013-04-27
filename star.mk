@@ -96,7 +96,7 @@ PRODUCT_PACKAGES += Torch
 
 # Enable mini gapps
 MINI_GAPPS := true
-$(call inherit-product, vendor/google/gapps_armv6_tiny.mk)
+$(call inherit-product, vendor/google/tiny_gapps_nonneon_tonyp.mk)
 
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
