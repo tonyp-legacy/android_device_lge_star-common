@@ -86,13 +86,6 @@ on boot
 
 
 # Power management settings
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 216000
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1200000
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor interactive
-    write /sys/devices/system/cpu/cpufreq/interactive/go_maxspeed_load 80
-    write /sys/devices/system/cpu/cpufreq/interactive/boost_factor 2
-    write /sys/devices/system/cpu/cpufreq/interactive/sustain_load 80
     write /sys/module/cpuidle/parameters/lp2_in_idle 1
 
 
@@ -112,6 +105,8 @@ on boot
     chown system system /sys/devices/platform/tegra_gyro_accel/tilt_delay
     chown system system /sys/devices/platform/i2c-gpio.5/i2c-5/5-0060/lsensor_onoff
     chown system system /sys/devices/platform/i2c-gpio.5/i2c-5/5-0060/alc
+    chown system system /sys/class/backlight/aat2870-backlight/brightness
+    chown system system /sys/class/backlight/aat2870-backlight/brightness_mode
 
 # light controls
     chown system system /sys/class/leds/buttonpanel/brightness
@@ -124,9 +119,9 @@ on boot
         chown system system /data/fota
         chmod 0777 /data/fota
 
-        chmod 777 /dev/block/mmcblk0p3
 # kernel read permission
-        chmod 644 /dev/block/mmcblk0p5
+        chmod 644 /dev/block/mmcblk0p6
+        chmod 777 /dev/block/mmcblk0p5
 # 20101107, sglee76@lge.com, FOTA [END]
 
 ## LGE's bluetooth stuff
@@ -137,19 +132,31 @@ on boot
     chmod 0660 /sys/class/rfkill/rfkill0/type
     chmod 0660 /sys/class/rfkill/rfkill1/state
     chmod 0660 /sys/class/rfkill/rfkill1/type
-    chmod 0660 /proc/bluetooth/sleep/lpm
-    chmod 0660 /proc/bluetooth/sleep/btwrite
+##    chmod 0660 /proc/bluetooth/sleep/lpm
+##    chmod 0660 /proc/bluetooth/sleep/btwrite
 
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill1/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill1/type
-    chown bluetooth bluetooth /proc/bluetooth/sleep/lpm
-    chown bluetooth bluetooth /proc/bluetooth/sleep/btwrite
+##    chown bluetooth bluetooth /proc/bluetooth/sleep/lpm
+##    chown bluetooth bluetooth /proc/bluetooth/sleep/btwrite
     write /sys/class/rfkill/rfkill0/state 0
 ### End of LGE bluetooth
 
     chmod 0644 /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq
+
+    # Tegra specific cpufreq policy stuff
+    chown system system /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
+    chmod 0664 /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
+    chown system system /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
+    chmod 0664 /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
+    chown system system /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
+    chmod 0664 /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
+    chown system system /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
+    chmod 0664 /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
+    chown system system /sys/module/cpu_tegra/parameters/cpu_user_cap
+    chmod 0664 /sys/module/cpu_tegra/parameters/cpu_user_cap
 
 on post-fs-data
     mkdir /data/misc/wifi 0770 wifi wifi
@@ -244,3 +251,11 @@ service vsnet2_down /system/bin/init.vsnet-down 2
    group radio cache inet misc
    disabled
    oneshot
+
+service hciattach /system/bin/brcm_patchram_plus --enable_hci \
+     --baudrate 3000000 --patchram /etc/firmware/bcm4329.hcd \
+     /dev/ttyHS2
+    class main
+    user bluetooth
+    group bluetooth net_bt_admin
+    disabled

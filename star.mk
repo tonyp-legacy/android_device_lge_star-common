@@ -53,6 +53,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	dalvik.vm.dexopt-data-only=1 \
 	sys.mem.max_hidden_apps=4 \
 	ro.lge.audio_soundexception=true \
+	ro.zram.default=18 \
 	persist.service.zram=18
 
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
@@ -79,9 +80,23 @@ PRODUCT_PACKAGES += \
     audio.a2dp.default \
     hwcomposer.default \
     com.android.future.usb.accessory
+    
+# bluetooth BlueZ config
+PRODUCT_PACKAGES += \
+    bluetoothd \
+    hciconfig \
+    hcitool \
+    brcm_patchram_plus
+	
+BOARD_BLUETOOTH_DOES_NOT_USE_RFKILL := false
+BOARD_BLUETOOTH_USES_HCIATTACH_PROPERTY := false
 
 # Enable Torch
 PRODUCT_PACKAGES += Torch
+
+# Enable mini gapps
+MINI_GAPPS := true
+$(call inherit-product, vendor/google/tiny_gapps_nonneon_tonyp.mk)
 
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
