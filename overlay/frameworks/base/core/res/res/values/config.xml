@@ -28,6 +28,10 @@
 
     <bool name="config_automatic_brightness_available">true</bool>
 
+    <!-- Flag indicating whether the we should enable the automatic brightness adjust in Settings.
+         this flage depends on the config_automatic_brightness_available -->
+    <bool name="config_automatic_adjust_brightness_available">false</bool>
+
     <!-- These are all dummies, but need to be present to enable UI control of auto-brightness
                   The actual control and values are all in-kernel -->
     <integer-array name="config_autoBrightnessLevels">
