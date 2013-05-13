@@ -63,6 +63,9 @@ TARGET_NEEDS_BLUETOOTH_INIT_DELAY := true
 #MAX_EGL_CACHE_ENTRY_SIZE := 0
 #MAX_EGL_CACHE_SIZE := 10
 
+BOARD_EGL_CFG := device/lge/star-common/egl.cfg
+BOARD_EGL_NEEDS_LEGACY_FB := true
+
 COMMON_GLOBAL_CFLAGS += -DICS_AUDIO_BLOB -DICS_CAMERA_BLOB
 
 BOARD_SYSFS_LIGHT_SENSOR := "/sys/class/backlight/aat2870-backlight/brightness_mode"
