@@ -76,7 +76,7 @@ TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/lge/star-common/releasetools
 ##BOARD_BLUEDROID_VENDOR_CONF := device/lge/star-common/vnd_bt.txt
 
 # Compiler stuff
-TARGET_GCC_VERSION := 4.7
+TARGET_GCC_VERSION := 4.8
 TARGET_USE_O3 := true
 TARGET_USE_LINARO_STRING_ROUTINES := true
 TARGET_USE_LINARO_MEMCPY := true
