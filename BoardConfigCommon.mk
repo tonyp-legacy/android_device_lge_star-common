@@ -75,9 +75,8 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/fsl-tegra-udc/gadget/l
 TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/lge/star-common/releasetools/p990-newbl_ota_from_target_files
 
 # Compiler stuff
-TARGET_GCC_VERSION := 4.8
+TARGET_GCC_VERSION_EXP := 4.8
 TARGET_USE_LINARO_STRING_ROUTINES := true
 TARGET_USE_LINARO_MEMCPY := true
 TARGET_USE_GRAPHITE := true
 TARGET_USE_PIPE := true
-DEBUG_NO_STRICT_ALIASING := yes
