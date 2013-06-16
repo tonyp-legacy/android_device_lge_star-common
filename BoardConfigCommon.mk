@@ -25,6 +25,9 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/star-common/bluetooth
+BOARD_BLUEDROID_VENDOR_CONF := device/lge/star-common/bluetooth/vnd_bt.txt
+#TARGET_NEEDS_BLUETOOTH_INIT_DELAY := true
 
 TARGET_OVERLAY_ALWAYS_DETERMINES_FORMAT := true
 
@@ -58,7 +61,6 @@ BOARD_MOBILEDATA_INTERFACE_NAME := "vsnet0"
 BOARD_USE_SKIA_LCDTEXT := true
 USE_OPENGL_RENDERER := true
 BOARD_NO_ALLOW_DEQUEUE_CURRENT_BUFFER := true
-TARGET_NEEDS_BLUETOOTH_INIT_DELAY := true
 #MAX_EGL_CACHE_ENTRY_SIZE := 0
 #MAX_EGL_CACHE_SIZE := 10
 
@@ -73,7 +75,6 @@ BOARD_SYSFS_LIGHT_SENSOR := "/sys/class/backlight/aat2870-backlight/brightness_m
 
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/fsl-tegra-udc/gadget/lun%d/file"
 TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/lge/star-common/releasetools/p990-newbl_ota_from_target_files
-BOARD_BLUEDROID_VENDOR_CONF := device/lge/star-common/vnd_bt.txt
 
 # Compiler stuff
 TARGET_GCC_VERSION_EXP := 4.6
