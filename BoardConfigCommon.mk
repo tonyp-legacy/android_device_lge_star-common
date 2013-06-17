@@ -15,6 +15,9 @@ TARGET_ARCH_VARIANT_FPU := vfpv3-d16
 ARCH_ARM_HAVE_TLS_REGISTER := true
 ARCH_ARM_USE_NON_NEON_MEMCPY := true
 
+# Avoid the generation of ldrcc instructions
+#NEED_WORKAROUND_CORTEX_A9_745320 := true
+
 TARGET_SPECIFIC_HEADER_PATH := device/lge/star-common/include
 
 #TARGET_USERIMAGES_USE_EXT4 := true
@@ -28,6 +31,8 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/star-common/bluetooth
 BOARD_BLUEDROID_VENDOR_CONF := device/lge/star-common/bluetooth/vnd_bt.txt
 #TARGET_NEEDS_BLUETOOTH_INIT_DELAY := true
+
+#BOARD_USES_GENERIC_AUDIO := true
 
 TARGET_OVERLAY_ALWAYS_DETERMINES_FORMAT := true
 
