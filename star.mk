@@ -67,16 +67,15 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/10-movestuff.sh:system/addon.d/10-movestuff.sh
 
-# bluetooth config
 PRODUCT_COPY_FILES += \
-    system/bluetooth/data/main.conf:system/etc/bluetooth/main.conf
+    $(LOCAL_PATH)/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf \
+    $(LOCAL_PATH)/config/audio_policy.conf:system/etc/audio_policy.conf
 
-# Bluetooth tools
-PRODUCT_PACKAGES += \
-    l2ping \
-    hciconfig \
-    hcitool \
-    libbt-vendor
+#bluetooth
+PRODUCT_PACKAGES += l2ping \
+			hciconfig \
+			hcitool \
+			libnetcmdiface
 
 ## LGE stuffs
 PRODUCT_PACKAGES += \

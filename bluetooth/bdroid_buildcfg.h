@@ -23,6 +23,6 @@
 
 #define A2DP_HW_SYSFS_TUNER "/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq"
 #define A2DP_HW_SYSFS_TUNER_OFF "0"
-#define A2DP_HW_SYSFS_TUNER_ON "466944"
+#define A2DP_HW_SYSFS_TUNER_ON "319488"
 
 #endif

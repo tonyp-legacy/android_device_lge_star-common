@@ -28,11 +28,15 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/star-common/bluetooth
 BOARD_BLUEDROID_VENDOR_CONF := device/lge/star-common/bluetooth/vnd_bt.txt
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/star-common/bluetooth
+BOARD_BLUETOOTH_LIBBT_VNDCFG := device/motorola/olympus/bluetooth/bt_vendor.conf
+BOARD_BLUETOOTH_USES_HCIATTACH_PROPERTY := true
 #TARGET_NEEDS_BLUETOOTH_INIT_DELAY := true
+#BLUETOOTH_HCI_USE_MCT := true
 
-BOARD_USES_GENERIC_AUDIO := true
+BOARD_USES_AUDIO_LEGACY := true
+BOARD_USES_GENERIC_AUDIO := false
 
 TARGET_OVERLAY_ALWAYS_DETERMINES_FORMAT := true
 
@@ -51,6 +55,8 @@ BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_wext
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wext
 WIFI_DRIVER_HAS_LGE_SOFTAP      := true
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
+WIFI_DRIVER_MODULE_NAME     := "bcm4329"
+WIFI_DRIVER_FW_PATH_PARAM   := "/sys/module/bcm4329/parameters/firmware_path"
 #BOARD_WEXT_NO_COMBO_SCAN       := true
 
 BOARD_HAS_VIBRATOR_IMPLEMENTATION := ../../device/lge/star-common/vibrator.c
