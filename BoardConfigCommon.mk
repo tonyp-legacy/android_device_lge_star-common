@@ -55,8 +55,6 @@ BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_wext
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wext
 WIFI_DRIVER_HAS_LGE_SOFTAP      := true
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
-WIFI_DRIVER_MODULE_NAME     := "bcm4329"
-WIFI_DRIVER_FW_PATH_PARAM   := "/sys/module/bcm4329/parameters/firmware_path"
 #BOARD_WEXT_NO_COMBO_SCAN       := true
 
 BOARD_HAS_VIBRATOR_IMPLEMENTATION := ../../device/lge/star-common/vibrator.c
