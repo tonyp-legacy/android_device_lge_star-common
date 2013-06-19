@@ -36,7 +36,7 @@ BOARD_BLUETOOTH_USES_HCIATTACH_PROPERTY := true
 
 #let's have some fun:
 #BOARD_USES_ALSA_AUDIO := true
-#TARGET_QCOM_AUDIO_VARIANT := true
+#TARGET_QCOM_AUDIO_VARIANT := caf (change bluedroid instead!)
 
 BOARD_USES_AUDIO_LEGACY := true
 BOARD_USES_GENERIC_AUDIO := false
