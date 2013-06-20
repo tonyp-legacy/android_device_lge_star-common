@@ -34,7 +34,6 @@ BOARD_BLUETOOTH_LIBBT_VNDCFG := device/lge/star-common/bluetooth/bt_vendor.conf
 BOARD_BLUETOOTH_USES_HCIATTACH_PROPERTY := true
 TARGET_NEEDS_BLUETOOTH_INIT_DELAY := true
 BLUETOOTH_HCI_USE_MCT := true
-BOARD_BLUETOOTH_DOES_NOT_USE_RFKILL := true
 
 #let's have some fun:
 #BOARD_USES_ALSA_AUDIO := true
