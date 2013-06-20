@@ -142,7 +142,7 @@ on boot
     #chown bluetooth bluetooth  /sys/class/rfkill/rfkill1/state
     #chown bluetooth bluetooth  /sys/class/rfkill/rfkill1/type
     chown bluetooth bluetooth  /proc/bluetooth/sleep/proto
-    #write /sys/class/rfkill/rfkill0/state 0
+    write /sys/class/rfkill/rfkill0/state 1
 
     chmod 0660 /proc/bluetooth/sleep/lpm
     chmod 0660 /proc/bluetooth/sleep/btwrite
