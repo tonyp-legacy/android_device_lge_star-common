@@ -67,6 +67,7 @@ BOARD_EGL_CFG := device/lge/star-common/egl.cfg
 BOARD_EGL_NEEDS_LEGACY_FB := true
 
 COMMON_GLOBAL_CFLAGS += -DICS_AUDIO_BLOB -DICS_CAMERA_BLOB
+BOARD_USES_AUDIO_LEGACY := true
 
 BOARD_SYSFS_LIGHT_SENSOR := "/sys/class/backlight/aat2870-backlight/brightness_mode"
 
