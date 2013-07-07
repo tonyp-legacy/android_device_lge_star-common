@@ -33,6 +33,9 @@
     <string name="config_geocodeProviderPackageName" translatable="false">com.google.android.location</string>
 
     <bool name="config_automatic_brightness_available">true</bool>
+    
+    <!-- Minimum screen brightness allowed by the power manager. -->
+    <integer name="config_screenBrightnessDim">4</integer>
 
     <!-- These are all dummies, but need to be present to enable UI control of auto-brightness
                   The actual control and values are all in-kernel -->
