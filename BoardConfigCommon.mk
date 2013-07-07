@@ -65,3 +65,5 @@ BOARD_SYSFS_LIGHT_SENSOR := "/sys/class/backlight/aat2870-backlight/brightness_m
 #TARGET_KERNEL_SOURCE := kernel/lge/star
 
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/fsl-tegra-udc/gadget/lun%d/file"
+
+TARGET_USE_PIPE := true
