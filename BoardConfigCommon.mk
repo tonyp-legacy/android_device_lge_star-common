@@ -14,29 +14,6 @@ TARGET_ARCH_VARIANT_FPU := vfpv3-d16
 ARCH_ARM_HAVE_TLS_REGISTER := true
 ARCH_ARM_USE_NON_NEON_MEMCPY := true
 
-TARGET_thumb_CFLAGS := -mthumb \
-	-Os \
-	-fomit-frame-pointer \
-	-fstrict-aliasing
-
-+TARGET_arm_CFLAGS := -O3 \
-	-fomit-frame-pointer \
-	-fstrict-aliasing \
-	-funswitch-loops \
-	-fmodulo-sched \
-	-fmodulo-sched-allow-regmoves 
-
-TARGET_GLOBAL_CPPFLAGS += $(COMMON_GLOBAL_CPPFLAGS) \
-	-Os \
-	-fvisibility-inlines-hidden \
-	-mfloat-abi=softfp \
-	-mfpu=vfpv3-d16 \
-	-march=armv7-a \
-	-mcpu=cortex-a9 \
-	-mtune=cortex-a9 \
-	-Wno-error=strict-aliasing \
-	-Wstrict-aliasing=2
-
 TARGET_SPECIFIC_HEADER_PATH := device/lge/star-common/include
 
 BOARD_HAS_NO_SELECT_BUTTON := true
