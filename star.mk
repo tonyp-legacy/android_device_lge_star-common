@@ -4,7 +4,6 @@ DEVICE_PACKAGE_OVERLAYS += device/lge/star-common/overlay
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/init_recovery.rc:root/init_recovery.rc \
     $(LOCAL_PATH)/init.cm-star.rc:root/init.cm-star.rc \
-    $(LOCAL_PATH)/init.star.bluez.rc:root/init.star.bluez.rc \
     $(LOCAL_PATH)/init.star.usb.rc:root/init.star.usb.rc
 
 PRODUCT_COPY_FILES += \
@@ -83,20 +82,7 @@ PRODUCT_PACKAGES += \
     hwcomposer.default \
     com.android.future.usb.accessory
    
-# BlueZ: binaries
-PRODUCT_PACKAGES += \
-    bluetoothd \
-    libbluetoothd \
-    hcitool \
-    hciconfig \
-    hciattach \
-    brcm_patchram_plus
-
-# tonyp added:
-PRODUCT_PACKAGES += \
-    hwaddrs
-
-# BlueZ: configs
+# BlueZ configs
 PRODUCT_COPY_FILES += \
     system/bluetooth/data/audio.conf:system/etc/bluetooth/audio.conf \
     system/bluetooth/data/auto_pairing.conf:system/etc/bluetooth/auto_pairing.conf \
@@ -106,22 +92,18 @@ PRODUCT_COPY_FILES += \
     system/bluetooth/data/network.conf:system/etc/bluetooth/network.conf \
     system/bluetooth/data/stack.conf:system/etc/bluetooth/stack.conf
 
-# BlueZ: javax.btobex is required by Bluetooth_msm
+# javax.btobex is required by Bluetooth_msm
 PRODUCT_PACKAGES += \
     javax.btobex
 
-# BlueZ: properties
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.qc.bluetooth.stack=bluez \
-    ro.qualcomm.bluetooth.dun=true \
-    ro.qualcomm.bluetooth.ftp=true \
-    ro.qualcomm.bluetooth.hfp=true \
-    ro.qualcomm.bluetooth.hsp=true \
-    ro.qualcomm.bluetooth.map=true \
-    ro.qualcomm.bluetooth.nap=true \
-    ro.qualcomm.bluetooth.opp=true \
-    ro.qualcomm.bluetooth.pbap=true \
-    ro.qualcomm.bluetooth.sap=true
+PRODUCT_PACKAGES += \
+    bluetoothd \
+    libbluetoothd \
+    hcitool \
+    hciconfig \
+    hciattach \
+    brcm_patchram_plus \
+    hwaddrs
 
 # Enable Torch
 PRODUCT_PACKAGES += Torch

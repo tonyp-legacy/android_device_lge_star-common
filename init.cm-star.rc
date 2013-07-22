@@ -1,5 +1,4 @@
 import init.star.usb.rc
-import init.star.bluez.rc 
 
 on init
     export TMPDIR /data/local/tmp
@@ -125,6 +124,26 @@ on boot
         chmod 644 /dev/block/mmcblk0p6
         chmod 777 /dev/block/mmcblk0p5
 # 20101107, sglee76@lge.com, FOTA [END]
+
+## LGE's bluetooth stuff
+# bluetooth permissions
+    chmod 0660 /dev/ttyHS2
+    chown bluetooth bluetooth /dev/ttyHS2
+    chmod 0660 /sys/class/rfkill/rfkill0/state
+    chmod 0660 /sys/class/rfkill/rfkill0/type
+    chmod 0660 /sys/class/rfkill/rfkill1/state
+    chmod 0660 /sys/class/rfkill/rfkill1/type
+##    chmod 0660 /proc/bluetooth/sleep/lpm
+##    chmod 0660 /proc/bluetooth/sleep/btwrite
+
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill1/state
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill1/type
+##    chown bluetooth bluetooth /proc/bluetooth/sleep/lpm
+##    chown bluetooth bluetooth /proc/bluetooth/sleep/btwrite
+    write /sys/class/rfkill/rfkill0/state 0
+### End of LGE bluetooth
 
     chmod 0644 /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq
 
