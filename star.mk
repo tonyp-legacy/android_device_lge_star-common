@@ -83,7 +83,9 @@ PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
 
 # Enable Torch
-PRODUCT_PACKAGES += Torch
+PRODUCT_PACKAGES += Torch \
+    camerawrapper \
+    camera.tegra
 
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
