@@ -105,7 +105,9 @@ PRODUCT_PACKAGES += \
     hwaddrs
 
 # Enable Torch
-PRODUCT_PACKAGES += Torch
+PRODUCT_PACKAGES += Torch \
+    camerawrapper \
+    camera.tegra
 
 # Enable mini gapps
 MINI_GAPPS := true
