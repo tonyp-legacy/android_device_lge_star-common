@@ -80,4 +80,4 @@ BOARD_BLUEDROID_VENDOR_CONF := device/lge/star-common/vnd_bt.txt
 
 # Compiler stuff
 TARGET_USE_PIPE := true
-
+HAVE_SELINUX := false
